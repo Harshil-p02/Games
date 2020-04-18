@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <title>Rock Paper Scissor!</title>
+    </head>
+    <body>
+        <script>
+            
+            const userName = prompt('Enter your name maester:');
+            let n;
+            
+            while (true) {
+                n = prompt('How many times do you want to play?');
+                if (typeof Number(n) === 'number' && n > 0){
+                    break;
+                }
+            }
+            
+            function getComputerResponse() {
+                //randomly returns rock, paper or scissor
+
+                const responseList = ['rock', 'paper', 'scissor'];
+                let compResponse = responseList[Math.floor(Math.random() * 3)];
+                return compResponse;
+            }
+
+            function getUserResponse() {
+                //returns the player's response
+
+                let userResponse = prompt('Select the weapon of your choice: ');
+                return userResponse;
+            }
+
+            function playRound(userResponse, compResponse) {
+                //returns the result of a single round
+                
+                userResponse = userResponse.toLowerCase();
+                            
+                if (userResponse === compResponse) {
+                    return 'draw';
+                } else if (userResponse === 'rock') {
+                    if (compResponse === 'paper') {                        
+                        return 'lose';
+                    } else {                        
+                        return 'win';
+                    }
+                } else if (userResponse === 'paper') {
+                    if (compResponse === 'scissor') {                        
+                        return 'lose';
+                    } else {                        
+                        return 'win';
+                    }
+                } else if (userResponse === 'scissor') {
+                    if (compResponse === 'rock') {
+                        return 'lose';
+                    } else {
+                        return 'win';
+                    }
+                } else {
+                    alert('You don\'t know how to play rock paper scissor DUMBHEAD!')
+                }   
+            }
+
+            function game(n) {
+                //Plays the game n times; Displays results in the console after each round
+                
+                let win = 0, draw = 0, lose = 0, trash = 0;
+                for (let i = 0; i < n; i++) {
+                    compResponse = getComputerResponse();
+                    userResponse = getUserResponse();
+                    result = playRound(userResponse, compResponse);
+                    switch (result) {
+                        case 'win':
+                            win++;
+                            console.log(`You WON, ${userName}!!\nComputer's move = ${compResponse.toUpperCase()}\n${userName}'s move = ${userResponse.toUpperCase()}`);
+                            break;
+                        
+                        case 'draw':
+                            draw++;
+                            console.log(`It's a draw.\nComputer's move = ${compResponse.toUpperCase()}\n${userName}'s move = ${userResponse.toUpperCase()}`);
+                            break;
+
+                        case 'lose':
+                            lose++;
+                            console.log(`You lost  :(\nComputer's move = ${compResponse.toUpperCase()}\n${userName}'s move = ${userResponse.toUpperCase()}`);
+                            break;
+
+                        default:
+                            console.log('Enter the correct info.');
+                            trash++
+                            break;
+                    }
+                }
+                console.log(`Stats:\n\tWins: ${win}\n\tLost: ${lose}\n\tDraws: ${draw}\n\tTrash moves: ${trash}`)
+            }
+
+        
+            game(n);
+            
+            
+        </script>
+    </body>
+</html>
