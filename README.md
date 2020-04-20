@@ -1,2 +1,2 @@
-Added Rock paper scissor solution in JavaScript
+Rock paper scissor solution in JavaScript<br>
 TheOdinProject
